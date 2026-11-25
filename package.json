@@ -1,6 +1,6 @@
 {
   "name": "chengfeng-videocut-koubo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Agent Skill that cuts slips, repeats and retakes out of a self-recorded Chinese voiceover, shortens pauses, and builds a review page",
   "license": "Apache-2.0",
   "author": "成峰 / AI产品自由",

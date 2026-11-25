@@ -82,12 +82,13 @@ for op, i1, i2, j1, j2 in ops:
     问题.append({"类": 类, "剪后秒": round(t, 2), "刀口": 在刀口, "离删词刀口": 0.0 if 在刀口 else round(min([abs(t - c) for c in 删词秒] or [99]), 2),
                "离拼接": round(min([abs(t - s) for s in 拼接] or [99]), 2), "听到": h, "应是": e, "上下文": 前后(j1, j2)})
 见 = set()
+def 形(xs): return "".join("#" if re.fullmatch(r"[a-z0-9]+", x) else x for x in xs)   # 英文、数字两次识别写法常不一样，按占位比
 for n in (6, 5, 4, 3, 2):                       # 连着重复：同一串（≥2 字）隔 0–3 个字又出现，如“它自己它自己”
     for j in range(len(rs) - n):
         for 隔 in range(4):
             k = j + n + 隔
             if rs[k:k + n] == rs[j:j + n] and not any(j <= x < k + n for x in 见):
-                原有 = "".join(rs[j:k + n]) in "".join(es)   # 稿里本来就这么说（“一个一个”），不算
+                原有 = 形(rs[j:k + n]) in 形(es)   # 稿里本来就这么说（“一个一个”“前半段是 X 后半段是”），不算
                 见.update(range(j, k + n))
                 if not 原有:
                     问题.append({"类": "重复", "剪后秒": round(rt(j), 2), "刀口": None, "离删词刀口": None, "离拼接": None,
