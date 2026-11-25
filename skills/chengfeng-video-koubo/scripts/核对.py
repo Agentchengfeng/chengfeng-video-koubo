@@ -100,7 +100,7 @@ for n in (6, 5, 4, 3, 2):                       # 连着重复：同一串（≥
 
 # 3. 复核：刀口上多出来/变了的字，原素材那一侧本来有没有
 if not a.不复核:
-    tmp = tempfile.mkdtemp(prefix="chengfeng-videocut-koubo-")
+    tmp = tempfile.mkdtemp(prefix="chengfeng-video-koubo-")
     def 听原声(lo, hi, 名):
         if hi - lo < 0.3: return ""
         p = os.path.join(tmp, 名 + ".wav")

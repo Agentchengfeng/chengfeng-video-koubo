@@ -125,7 +125,7 @@ for k, (s, e) in enumerate(段):
 剪后长 = t
 
 # 3. 出声音：整段解码成 wav，按段切、接缝两边各 5 毫秒淡入淡出
-tmp = tempfile.mkdtemp(prefix="chengfeng-videocut-koubo-")
+tmp = tempfile.mkdtemp(prefix="chengfeng-video-koubo-")
 全 = os.path.join(tmp, "全.wav")
 subprocess.run([FF, "-nostdin", "-v", "error", "-y", "-i", 源, "-vn", "-c:a", "pcm_s16le", "-ar", str(信息["采样率"]), 全], check=True)
 with wave.open(全, "rb") as r:

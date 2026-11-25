@@ -1,4 +1,4 @@
-# 成峰剪口播 chengfeng-videocut-koubo
+# 成峰剪口播 chengfeng-video-koubo
 
 > 自己录的口播，交给 AI 剪：口误、重复、重录剪掉，停顿压短，剪完给你一张能逐条试听的审核页。
 
@@ -30,13 +30,13 @@
 最简单的方式：把这句发给你的 AI，它会照着命令装好：
 
 ```text
-帮我运行这条命令，安装成峰剪口播 Skill：npx -y github:Agentchengfeng/chengfeng-videocut-koubo install
+帮我运行这条命令，安装成峰剪口播 Skill：npx -y github:Agentchengfeng/chengfeng-video-koubo install
 ```
 
 自己在终端装也行：
 
 ```sh
-npx -y github:Agentchengfeng/chengfeng-videocut-koubo install
+npx -y github:Agentchengfeng/chengfeng-video-koubo install
 ```
 
 再配好识别 key，二选一：
@@ -44,7 +44,7 @@ npx -y github:Agentchengfeng/chengfeng-videocut-koubo install
 ```sh
 export VOLCENGINE_API_KEY=你的key
 # 或者写进文件
-mkdir -p ~/.chengfeng-videocut-koubo && echo '{"volc_api_key": "你的key"}' > ~/.chengfeng-videocut-koubo/config.json
+mkdir -p ~/.chengfeng-video-koubo && echo '{"volc_api_key": "你的key"}' > ~/.chengfeng-video-koubo/config.json
 ```
 
 装好后重启 Agent，让它重新加载 Skill 列表。
@@ -85,7 +85,7 @@ mkdir -p ~/.chengfeng-videocut-koubo && echo '{"volc_api_key": "你的key"}' > ~
 | `审核页.html` | 浏览器打开，逐条试听 |
 | `接缝待听.md` | 机器拿不准、要人耳听的刀口 |
 
-你的口味和专名会记在 `~/.chengfeng-videocut-koubo/偏好.md`、`词典.md`，剪得越多越合你的习惯。
+你的口味和专名会记在 `~/.chengfeng-video-koubo/偏好.md`、`词典.md`，剪得越多越合你的习惯。
 
 ## 它怎么判断删哪段
 
@@ -104,8 +104,8 @@ mkdir -p ~/.chengfeng-videocut-koubo && echo '{"volc_api_key": "你的key"}' > ~
 ## 检查与卸载
 
 ```sh
-npx -y github:Agentchengfeng/chengfeng-videocut-koubo doctor
-npx -y github:Agentchengfeng/chengfeng-videocut-koubo uninstall
+npx -y github:Agentchengfeng/chengfeng-video-koubo doctor
+npx -y github:Agentchengfeng/chengfeng-video-koubo uninstall
 ```
 
 `doctor` 会查 Skill 装好没有，python3、ffmpeg 和识别 key 在不在（只看有没有，不打印 key）。安装器会把 Skill 放进本机 Agent 的 Skill 目录，已有的旧版本会先备份。包里只有说明文件和脚本，不含 API key 或任何个人数据。
@@ -113,7 +113,7 @@ npx -y github:Agentchengfeng/chengfeng-videocut-koubo uninstall
 ## 脚本也能单独用
 
 ```sh
-S=~/.claude/skills/chengfeng-videocut-koubo/scripts
+S=~/.claude/skills/chengfeng-video-koubo/scripts
 python3 $S/转录.py 口播.mp4 口播-剪口播 --热词 'Claude,Codex'
 python3 $S/修字.py 口播-剪口播 口播-剪口播/修字.json      # 格式见 修字.py 开头
 python3 $S/删词.py 口播-剪口播 口播-剪口播/删词.json      # 格式见 删词.py 开头
@@ -125,12 +125,12 @@ python3 $S/审核页.py 口播-剪口播
 ## 仓库结构
 
 ```text
-chengfeng-videocut-koubo/
+chengfeng-video-koubo/
 ├── SKILL.md
 ├── LICENSE / NOTICE.md / CITATION.cff
 ├── package.json
 ├── bin/install.js
-└── skills/chengfeng-videocut-koubo/
+└── skills/chengfeng-video-koubo/
     ├── SKILL.md
     ├── 更新日志.md
     ├── agents/openai.yaml

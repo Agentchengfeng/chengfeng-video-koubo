@@ -1,5 +1,5 @@
 ---
-name: chengfeng-videocut-koubo
+name: chengfeng-video-koubo
 description: 剪口播：把自己录的中文口播（录音或视频）里的口误、重复、重录、残句、卡壳剪掉，顺手把太长的停顿压短，出剪好的人声（视频就出剪好的视频）和一张能逐条试听的审核页。不用装剪辑软件，只要 python3、ffmpeg 和一把豆包（火山引擎）录音文件识别的 key。用户说剪口播、剪掉口误、处理口播录音、把我录的这段剪一下时使用。不做字幕、配乐、画面动画。
 ---
 
@@ -23,9 +23,9 @@ description: 剪口播：把自己录的中文口播（录音或视频）里的�
 ## 0. 准备
 
 - 要有 `python3`（3.8 以上，只用标准库）和 `ffmpeg`、`ffprobe`。缺了就告诉用户怎么装（macOS：`brew install ffmpeg`），不替用户装。
-- 豆包识别 key：环境变量 `VOLCENGINE_API_KEY`，或者 `~/.chengfeng-videocut-koubo/config.json` 里的 `volc_api_key`（要指定资源时加 `volc_resource_id`，不写就依次试 `volc.seedasr.auc`、`volc.bigasr.auc`）。没有 key 就停下，告诉用户去火山引擎开通“录音文件识别”。key 不打印、不写进别的文件。
+- 豆包识别 key：环境变量 `VOLCENGINE_API_KEY`，或者 `~/.chengfeng-video-koubo/config.json` 里的 `volc_api_key`（要指定资源时加 `volc_resource_id`，不写就依次试 `volc.seedasr.auc`、`volc.bigasr.auc`）。没有 key 就停下，告诉用户去火山引擎开通“录音文件识别”。key 不打印、不写进别的文件。
 - 识别按时长收费，第 1 步、第 6 步各识别一次（第 6 步复核还会对可疑刀口各识别两小段）。开工前跟用户说一声。
-- 用户的口味和专名词典放在 `~/.chengfeng-videocut-koubo/偏好.md`、`~/.chengfeng-videocut-koubo/词典.md`，没有就是新用户。
+- 用户的口味和专名词典放在 `~/.chengfeng-video-koubo/偏好.md`、`~/.chengfeng-video-koubo/词典.md`，没有就是新用户。
 
 ## 1. 转录
 
@@ -40,7 +40,7 @@ python3 $S/转录.py <录音或视频> <工作目录> --热词 'Codex,Claude'
 
 ## 2. 修字：先把字改对
 
-先读 [专名词典](references/专名词典.md) 和用户的 `~/.chengfeng-videocut-koubo/词典.md`（用户的优先），对着 `逐字稿.txt` 找听错的专名，写 `修字.json`，再跑：
+先读 [专名词典](references/专名词典.md) 和用户的 `~/.chengfeng-video-koubo/词典.md`（用户的优先），对着 `逐字稿.txt` 找听错的专名，写 `修字.json`，再跑：
 
 ```sh
 python3 $S/修字.py <工作目录> <工作目录>/修字.json
@@ -55,7 +55,7 @@ python3 $S/修字.py <工作目录> <工作目录>/修字.json
 
 ## 3. 删词：先通览整段，再逐字五轮
 
-先读 [删词规则](references/删词规则.md)（原则、判例、风险）和用户的 `~/.chengfeng-videocut-koubo/偏好.md`。教材优先级：**用户偏好 > 用户判例 > 通用判例**。判断只看 `逐字稿.txt` 的顺序，从第一句读到最后一句，不跳读。
+先读 [删词规则](references/删词规则.md)（原则、判例、风险）和用户的 `~/.chengfeng-video-koubo/偏好.md`。教材优先级：**用户偏好 > 用户判例 > 通用判例**。判断只看 `逐字稿.txt` 的顺序，从第一句读到最后一句，不跳读。
 
 **第一层：通览所有句子。** 先读完整篇，再找相隔很远的重录：同一个意思说了几遍、哪遍完整、几遍之间差在哪、保哪遍、删哪遍。不能只比相邻句；关键词不同不等于不是重录，也不等于是重录，看上下文。顺手标**换要点**：下一句开始讲新的要点（“第一/第二”“另外”、转到总结），记下这一句的句号。
 
@@ -139,7 +139,7 @@ python3 $S/审核页.py <工作目录>
 - **用户补删的**（终版删了、第一版没删）= AI 漏了：属于哪一类，为什么没看出来？
 - 核对查出的漏删也算 AI 漏了。
 
-记下来：口味差异追加进 `~/.chengfeng-videocut-koubo/偏好.md`（没有就建）；专名错误追加进 `~/.chengfeng-videocut-koubo/词典.md`（两列表格：正确写法 | 听成了什么，追加前查重）；零差异也记一行“全盘采纳”。同一类规则空白出现第三次，告诉用户，建议写进本 skill 的删词规则。
+记下来：口味差异追加进 `~/.chengfeng-video-koubo/偏好.md`（没有就建）；专名错误追加进 `~/.chengfeng-video-koubo/词典.md`（两列表格：正确写法 | 听成了什么，追加前查重）；零差异也记一行“全盘采纳”。同一类规则空白出现第三次，告诉用户，建议写进本 skill 的删词规则。
 
 ## 出错时
 

@@ -1,11 +1,11 @@
 {
-  "name": "chengfeng-videocut-koubo",
-  "version": "0.1.1",
+  "name": "chengfeng-video-koubo",
+  "version": "0.1.2",
   "description": "Agent Skill that cuts slips, repeats and retakes out of a self-recorded Chinese voiceover, shortens pauses, and builds a review page",
   "license": "Apache-2.0",
   "author": "成峰 / AI产品自由",
   "bin": {
-    "chengfeng-videocut-koubo": "bin/install.js"
+    "chengfeng-video-koubo": "bin/install.js"
   },
   "files": [
     "bin/",
@@ -26,12 +26,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Agentchengfeng/chengfeng-videocut-koubo.git"
+    "url": "git+https://github.com/Agentchengfeng/chengfeng-video-koubo.git"
   },
   "bugs": {
-    "url": "https://github.com/Agentchengfeng/chengfeng-videocut-koubo/issues"
+    "url": "https://github.com/Agentchengfeng/chengfeng-video-koubo/issues"
   },
-  "homepage": "https://github.com/Agentchengfeng/chengfeng-videocut-koubo#readme",
+  "homepage": "https://github.com/Agentchengfeng/chengfeng-video-koubo#readme",
   "engines": {
     "node": ">=18"
   }

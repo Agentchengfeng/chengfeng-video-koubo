@@ -1,7 +1,9 @@
 """剪口播各脚本共用：配置、ffmpeg、豆包录音文件识别、读写工作目录。只用 Python 标准库。"""
 import base64, json, os, re, shutil, subprocess, sys, tempfile, time, urllib.error, urllib.request, uuid
 
-配置目录 = os.path.expanduser("~/.chengfeng-videocut-koubo")
+配置目录 = os.path.expanduser("~/.chengfeng-video-koubo")
+if not os.path.isdir(配置目录) and os.path.isdir(os.path.expanduser("~/.chengfeng-videocut-koubo")):
+    配置目录 = os.path.expanduser("~/.chengfeng-videocut-koubo")  # 改名前（chengfeng-videocut-koubo）的设置；装新版时会拷到新位置
 标点句末 = set("。？！?!…")
 标点逗号 = set("，、；：,;:—")
 标点全部 = 标点句末 | 标点逗号 | set("“”‘’\"'（）()《》〈〉「」『』[]【】·-.")
@@ -97,7 +99,7 @@ def 识别(音频, 输出前缀, 热词=(), 接着查=None, 最多等=900):
             请求 = {"model_name": "bigmodel", "enable_itn": True, "enable_punc": True, "show_utterances": True}
             热 = [w.strip() for w in 热词 if w.strip()]
             if 热: 请求["corpus"] = {"context": json.dumps({"hotwords": [{"word": w} for w in 热]}, ensure_ascii=False)}
-            体 = {"user": {"uid": "chengfeng-videocut-koubo"}, "audio": {"data": 数据, "format": "wav", "codec": "raw", "rate": 16000,
+            体 = {"user": {"uid": "chengfeng-video-koubo"}, "audio": {"data": 数据, "format": "wav", "codec": "raw", "rate": 16000,
                   "bits": 16, "channel": 1, "language": "zh-CN"}, "request": 请求}
             码, 话, _ = 调("submit", 体, rid, res)
             print(f"提交识别（{res}）：{码} {话}", file=sys.stderr)

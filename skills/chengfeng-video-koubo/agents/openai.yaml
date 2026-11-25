@@ -1,0 +1,4 @@
+interface:
+  display_name: "成峰剪口播"
+  short_description: "把自己录的中文口播里的口误、重复、重录剪掉，压短停顿，出能逐条试听的审核页"
+  default_prompt: "请用 $chengfeng-video-koubo 剪这条口播：先转录、修字，再按删前保后找出重录、残句和口误，真的剪出来，剪后核对到 0 条，最后给我审核页。"
